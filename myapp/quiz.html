@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css"%}" >
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src='{% static 'fa5/js/all.min.js'%}'></script>
+    <title>QUIZ</title>
+    <style>
+    div.transbox {
+       margin:5%;
+       background-color: rgba(255,255,255,.9);
+       border: 1px solid red;
+       padding:2%;
+       border-radius: 10px;
+ }
+.sq:hover{
+  color:black;
+}
+  </style>
+  </head>
+  <body style='background:rgba(250,0,0,0.1)'>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 px-0">
+          <nav class='navbar bg-dark navbar-dark navbar-expand-sm'>
+            <a href="{% url "index"%}" class='navbar-brand'>Online Quiz</a>
+            <ul class='navbar-nav ml-auto'>
+              <li class="nav-item">
+                <a href="{% url "index"%}" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="#quiz" class="nav-link">Start Quiz <i class="fas fa-arrow-down ml-2"></i></a>
+              </li>
+
+              <!-- <a href="" class='nav-link btn btn-outline-light'>
+                <li class='nav-item sq'>Start quiz</li>
+              </a> -->
+              <!-- <a href="{% url "index"%}" class='nav-link btn btn-outline-light mr-2'>
+                <li class='nav-item sq '> <<< Home</li>
+              </a> -->
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid ">
+      <div class="row h-100 justify-content-center py-4" style="font-family:arial;  background-image: url('{% static 'images/quiz.jpeg' %}'); background-size:100% 100%; background-attachment:fixed;">
+        <div class="col-md-6 transbox">
+          <h2 class=' text-dark text-center'>Are you here</h2><h2 class='pl-5 text-success' style='margin-left:20%;'> with the SOLUTION</h2>
+          <h1 class='text-center'>or Are you Part of the<br/> <span  style='font-weight:bold; color:red;'>Problem ???<i class="fas fa-question" style='font-size:50px;'></i></span></h1>
+        </div>
+      </div>
+      <div class="row " id='quiz'>
+        <div class="col-md-9 bg-light my-5 py-5" style='margin:0 auto; border:1px solid red; border-radius:10px; '>
+          <form method="post" action="">
+
+            {% csrf_token %}
+            {% for i in d %}
+              <div type='1' class='alert alert-danger mt-5'><strong>{{i.id}} . </strong>{{ i.question }}</div>
+
+                <div class='aabb form-control'><input type="radio" value='a' name='q{{ i.id }}' checked />{{ i.option1}}</div>
+                <div class='aabb form-control'><input type="radio" value='b' name='q{{ i.id }}' />{{ i.option2 }}</div>
+                <div class='aabb form-control'><input type="radio" value='c' name='q{{ i.id }}' />{{ i.option3 }}</div>
+                <div class='aabb form-control'><input type="radio" value='d' name='q{{ i.id }}' />{{ i.option4 }}</div>
+                <input type="hidden" name="answer{{i.id}}" value="{{i.answer}}" />
+              {% endfor %}
+              <br/>
+              <input type="submit" class='btn btn-block btn-success py-2 my-4' />
+              </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        $('.aabb').click(function(){
+          $(this).css("color","orange");
+        });
+      });
+    </script>
+    <div class="container-fluid text-center" style='margin:0px;' id='about'>
+      <div class="row">
+        <div class="col-md-12" style="padding:3%; background:black; color:white;">
+          <strong>Powered By :</strong> <br/> <i class="fa fa-user" style='padding-right:2px;'></i> Ritika Sharma <br/>
+          <span class='justify-content-center'>Copyright &copy; <a href="http://www.sachtechsolution.com/" style='color:white;'>Sachtech Solution Pvt. ltd.</a></span>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

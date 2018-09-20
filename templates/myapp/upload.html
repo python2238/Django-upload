@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap4 %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css"%}">
+  </head>
+  <body class='bg-secondary'>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto bg-light py-5 my-5" style='border-radius:10px;'>
+          <form method="post" enctype="multipart/form-data">
+            <h1 class='alert alert-primary'>Fill Your Details Here</h1>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" value="Create Account" class='btn btn-primary'>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

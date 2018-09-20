@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>INDIA</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src='jquery.js'></script>
+    <style>
+    body{
+      font-family: 'Raleway', sans-serif;
+    }
+      .first{
+        height:33vh;
+        background: orange;
+        text-align: center;
+      }
+      .first span{
+        display: none;
+      }
+      .second{
+        height:33vh;
+        text-align: center;
+      }
+      .third{
+        height:33vh;
+        background: green;
+      }
+      .second img{
+        height:0%;
+      }
+    </style>
+    <script>
+      var a = 1;
+      function flag(){
+        $('.first').css('width',a+'%');
+        $('.third').css('width',a+'%');
+        if(a<100){
+            a++;
+        }else{
+          $('img').animate({
+            height:'100%'
+          },1000,function(){
+            $('span').show();
+            $('.first').animate({
+              fontSize:'50px'
+            },1000);
+          });
+        }
+
+      }
+      setInterval(flag,100);
+    </script>
+  </head>
+  <body>
+    <div class="first">
+      <span>Happy Independence day</span>
+    </div>
+    <div class="second">
+      <img src="http://onlinetutorial.co.in/wp-content/uploads/2018/08/circle.png"/>
+    </div>
+    <div class="third"></div>
+  </body>
+</html>
